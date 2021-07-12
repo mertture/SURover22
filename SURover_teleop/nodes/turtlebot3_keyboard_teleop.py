@@ -35,11 +35,11 @@ if os.name == 'nt':
 else:
   import tty, termios
 
-BURGER_MAX_LIN_VEL = 0.22
-BURGER_MAX_ANG_VEL = 2.84
+ROVER_MAX_LIN_VEL = 0.8
+ROVER_MAX_ANG_VEL = 5.00
 
-WAFFLE_MAX_LIN_VEL = 0.26
-WAFFLE_MAX_ANG_VEL = 1.82
+WAFFLE_MAX_LIN_VEL = 0.8
+WAFFLE_MAX_ANG_VEL = 5.00
 
 LIN_VEL_STEP_SIZE = 0.01
 ANG_VEL_STEP_SIZE = 0.1
@@ -105,22 +105,13 @@ def constrain(input, low, high):
     return input
 
 def checkLinearLimitVelocity(vel):
-    if turtlebot3_model == "burger":
-      vel = constrain(vel, -BURGER_MAX_LIN_VEL, BURGER_MAX_LIN_VEL)
-    elif turtlebot3_model == "waffle" or turtlebot3_model == "waffle_pi":
-      vel = constrain(vel, -WAFFLE_MAX_LIN_VEL, WAFFLE_MAX_LIN_VEL)
-    else:
-      vel = constrain(vel, -BURGER_MAX_LIN_VEL, BURGER_MAX_LIN_VEL)
+    vel = constrain(vel, -ROVER_MAX_LIN_VEL, ROVER_MAX_LIN_VEL)
 
     return vel
 
 def checkAngularLimitVelocity(vel):
-    if turtlebot3_model == "burger":
-      vel = constrain(vel, -BURGER_MAX_ANG_VEL, BURGER_MAX_ANG_VEL)
-    elif turtlebot3_model == "waffle" or turtlebot3_model == "waffle_pi":
-      vel = constrain(vel, -WAFFLE_MAX_ANG_VEL, WAFFLE_MAX_ANG_VEL)
-    else:
-      vel = constrain(vel, -BURGER_MAX_ANG_VEL, BURGER_MAX_ANG_VEL)
+   
+    vel = constrain(vel, -ROVER_MAX_ANG_VEL, ROVER_MAX_ANG_VEL)
 
     return vel
 

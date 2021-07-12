@@ -363,17 +363,145 @@
       xyz="0 -1 0" />
   </joint>
 
+
+
+<transmission name="left_front_trans" type="SimpleTransmission">
+    <type>transmission_interface/SimpleTransmission</type>
+    <actuator name="left_front_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+    <joint name="joint-L-f">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    </joint>
+  </transmission>
+
+  <transmission name="right_front_trans" type="SimpleTransmission">
+    <type>transmission_interface/SimpleTransmission</type>
+    <actuator name="right_front_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+    <joint name="joint-R-f">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    </joint>
+  </transmission>
+
+  <transmission name="left_rear_trans" type="SimpleTransmission">
+    <type>transmission_interface/SimpleTransmission</type>
+    <actuator name="left_rear_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+    <joint name="joint-L-r">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    </joint>
+  </transmission>
+
+  <transmission name="right_rear_trans" type="SimpleTransmission">
+    <type>transmission_interface/SimpleTransmission</type>
+    <actuator name="right_rear_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+    <joint name="joint-R-r">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    </joint>
+  </transmission>
+
+<!--
+ <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+    </plugin>
+  </gazebo>
+-->
+<!--
+<gazebo>
+  <plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
+        <commandTopic>cmd_vel</commandTopic>
+        <odometryTopic>odom</odometryTopic>
+        <odometryFrame>odom</odometryFrame>
+
+        <robotBaseFrame>base_footprint</robotBaseFrame>
+        <broadcastTF>true</broadcastTF>
+
+        <updateRate>30.0</updateRate>
+
+        <leftFrontJoint>joint-L-f</leftFrontJoint>
+        <rightFrontJoint>joint-R-f</rightFrontJoint>
+        <leftRearJoint>joint-L-r</leftRearJoint>
+        <rightRearJoint>joint-R-r</rightRearJoint>
+
+        <wheelSeparation>0.44</wheelSeparation>
+        <wheelDiameter>0.3</wheelDiameter>
+        
+
+        <torque>100</torque>
+      </plugin>
+ </gazebo> -->
+<!-- l-->
+
+
+<gazebo>
+      <plugin name="diffdrive_plugin_6w" filename="libdiffdrive_plugin_6w.so">
+        <alwaysOn>true</alwaysOn>
+        <updateRate>20.0</updateRate>
+        <frontLeftJoint>joint-L-f</frontLeftJoint>
+        <frontRightJoint>joint-R-f</frontRightJoint>
+        <midLeftJoint>joint-L-m</midLeftJoint>
+        <midRightJoint>joint-R-m</midRightJoint>
+        <rearLeftJoint>joint-L-r</rearLeftJoint>
+        <rearRightJoint>joint-R-r</rearRightJoint>
+        <wheelSeparation>0.2</wheelSeparation>
+        <wheelDiameter>0.02</wheelDiameter>
+        <torque>240</torque>
+        <robotBaseFrame>base_link</robotBaseFrame>
+        <commandTopic>cmd_vel</commandTopic>
+        <odometryTopic>odom</odometryTopic>
+        <odometryFrame>odom</odometryFrame>
+      </plugin>
+</gazebo>
+<!--
+<gazebo>
+  <plugin name="DiffDrivePlugin6W" filename="libdiffdrive_plugin_6w.so">
+        <commandTopic>cmd_vel_back</commandTopic>
+
+        <updateRate>100.0</updateRate>
+        <publishWheelJointState>true</publishWheelJointState>
+        <robotNamespace>/</robotNamespace>
+        <odometryTopic>odom_raw</odometryTopic>
+        <odometryFrame>odom</odometryFrame>
+        <robotBaseFrame>base_link</robotBaseFrame>
+        <broadcastTF>true</broadcastTF>
+
+        <frontLeftJoint>joint-L-f</frontLeftJoint>
+        <frontRightJoint>joint-R-f</frontRightJoint>
+        
+        <midLeftJoint>joint-L-m</midLeftJoint>
+        <midRightJoint>joint-R-m</midRightJoint>
+
+        <rearLeftJoint>joint-L-r</rearLeftJoint>
+        <rearRightJoint>joint-R-r</rearRightJoint>
+
+        <wheelSeparation>0.44</wheelSeparation>
+        <wheelDiameter>0.3</wheelDiameter>
+        
+
+        <torque>100</torque>
+  </plugin>
+</gazebo>
+
+-->
+
+
+<!--
   <gazebo>
     <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
       <legacyMode>false</legacyMode>
       <alwaysOn>true</alwaysOn>
       <updateRate>10</updateRate>
+      <leftJoint>joint-L-f</leftJoint>
+      <leftJoint>joint-L-m</leftJoint>
       <leftJoint>joint-L-r</leftJoint>
-      <leftJoint>joint-R-r</leftJoint>
-      <leftJoint>joint-R-m</leftJoint>
-      <rightJoint>joint-L-m</rightJoint>
       <rightJoint>joint-R-f</rightJoint>
-      <rightJoint>joint-L-f</rightJoint>
+      <rightJoint>joint-R-m</rightJoint>
+      <rightJoint>joint-R-r</rightJoint>
       <wheelSeparation>0.30</wheelSeparation>
       <wheelDiameter>0.2</wheelDiameter>
       <torque>30</torque>
@@ -382,5 +510,5 @@
       <odometryFrame>odom</odometryFrame>
       <robotBaseFrame>chassis</robotBaseFrame>
     </plugin>
-  </gazebo>
+  </gazebo> -->
 </robot>
