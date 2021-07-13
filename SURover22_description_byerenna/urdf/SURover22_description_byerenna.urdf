@@ -428,7 +428,7 @@
   <gazebo reference="imu_link">
     <sensor type="imu" name="imu">
       <always_on>true</always_on>
-      <visualize>$(arg imu_visual)</visualize>
+      <visualize>true</visualize>
     </sensor>
     <material>Gazebo/Grey</material>
   </gazebo>
@@ -465,7 +465,7 @@
   <!-- Camera & Laser -->
   <joint name="camera_joint" type="fixed">
     <axis xyz="0 1 0" />
-    <origin xyz="0.05 0 0.3" rpy="0 0 0"/>
+    <origin xyz="0.05 0 0.25" rpy="0 0 0"/>
     <parent link="base_link"/>
     <child link="camera_link"/>
   </joint>
@@ -525,8 +525,6 @@
     </sensor>
   </gazebo>
 
-
-<!--
   <gazebo reference="camera_link">
     <sensor type="camera" name="camera1">
       <update_rate>30.0</update_rate>
@@ -562,7 +560,20 @@
         <distortionT2>0.0</distortionT2>
       </plugin>
     </sensor>
-  </gazebo>-->
+  </gazebo>
+
+  <gazebo>
+    <plugin name="p3d_base_controller" filename="libgazebo_ros_p3d.so">
+      <alwaysOn>true</alwaysOn>
+      <updateRate>50.0</updateRate>
+      <bodyName>base_link</bodyName>
+      <topicName>odom</topicName>
+      <gaussianNoise>0.01</gaussianNoise>
+      <frameName>map</frameName>
+      <xyzOffsets>0 0 0</xyzOffsets>
+      <rpyOffsets>0 0 0</rpyOffsets>
+    </plugin>
+  </gazebo>
 
 <!--
   <gazebo reference="cam_link">
