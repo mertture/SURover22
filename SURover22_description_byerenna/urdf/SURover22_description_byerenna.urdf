@@ -95,7 +95,7 @@
     <child
       link="R-front" />
     <axis
-      xyz="0 -1 0" />
+      xyz="0 1 0" />
   </joint>
   <link
     name="R-mid">
@@ -148,7 +148,7 @@
     <child
       link="R-mid" />
     <axis
-      xyz="0 -1 0" />
+      xyz="0 1 0" />
   </joint>
   <link
     name="R-rear">
@@ -201,7 +201,7 @@
     <child
       link="R-rear" />
     <axis
-      xyz="0 -1 0" />
+      xyz="0 1 0" />
   </joint>
   <link
     name="L-front">
@@ -254,7 +254,7 @@
     <child
       link="L-front" />
     <axis
-      xyz="0 -1 0" />
+      xyz="0 1 0" />
   </joint>
   <link
     name="L-mid">
@@ -307,7 +307,7 @@
     <child
       link="L-mid" />
     <axis
-      xyz="0 -1 0" />
+      xyz="0 1 0" />
   </joint>
   <link
     name="L-rear">
@@ -360,7 +360,7 @@
     <child
       link="L-rear" />
     <axis
-      xyz="0 -1 0" />
+      xyz="0 1 0" />
   </joint>
 
 
@@ -405,110 +405,211 @@
     </joint>
   </transmission>
 
-<!--
- <gazebo>
-    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
-    </plugin>
-  </gazebo>
--->
-<!--
-<gazebo>
-  <plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
-        <commandTopic>cmd_vel</commandTopic>
-        <odometryTopic>odom</odometryTopic>
-        <odometryFrame>odom</odometryFrame>
-
-        <robotBaseFrame>base_footprint</robotBaseFrame>
-        <broadcastTF>true</broadcastTF>
-
-        <updateRate>30.0</updateRate>
-
-        <leftFrontJoint>joint-L-f</leftFrontJoint>
-        <rightFrontJoint>joint-R-f</rightFrontJoint>
-        <leftRearJoint>joint-L-r</leftRearJoint>
-        <rightRearJoint>joint-R-r</rightRearJoint>
-
-        <wheelSeparation>0.44</wheelSeparation>
-        <wheelDiameter>0.3</wheelDiameter>
-        
-
-        <torque>100</torque>
-      </plugin>
- </gazebo> -->
-<!-- l-->
-
-
-<gazebo>
-      <plugin name="diffdrive_plugin_6w" filename="libdiffdrive_plugin_6w.so">
-        <alwaysOn>true</alwaysOn>
-        <updateRate>20.0</updateRate>
-        <frontLeftJoint>joint-L-f</frontLeftJoint>
-        <frontRightJoint>joint-R-f</frontRightJoint>
-        <midLeftJoint>joint-L-m</midLeftJoint>
-        <midRightJoint>joint-R-m</midRightJoint>
-        <rearLeftJoint>joint-L-r</rearLeftJoint>
-        <rearRightJoint>joint-R-r</rearRightJoint>
-        <wheelSeparation>0.2</wheelSeparation>
-        <wheelDiameter>0.02</wheelDiameter>
-        <torque>240</torque>
-        <robotBaseFrame>base_link</robotBaseFrame>
-        <commandTopic>cmd_vel</commandTopic>
-        <odometryTopic>odom</odometryTopic>
-        <odometryFrame>odom</odometryFrame>
-      </plugin>
-</gazebo>
-<!--
-<gazebo>
-  <plugin name="DiffDrivePlugin6W" filename="libdiffdrive_plugin_6w.so">
-        <commandTopic>cmd_vel_back</commandTopic>
-
-        <updateRate>100.0</updateRate>
-        <publishWheelJointState>true</publishWheelJointState>
-        <robotNamespace>/</robotNamespace>
-        <odometryTopic>odom_raw</odometryTopic>
-        <odometryFrame>odom</odometryFrame>
-        <robotBaseFrame>base_link</robotBaseFrame>
-        <broadcastTF>true</broadcastTF>
-
-        <frontLeftJoint>joint-L-f</frontLeftJoint>
-        <frontRightJoint>joint-R-f</frontRightJoint>
-        
-        <midLeftJoint>joint-L-m</midLeftJoint>
-        <midRightJoint>joint-R-m</midRightJoint>
-
-        <rearLeftJoint>joint-L-r</rearLeftJoint>
-        <rearRightJoint>joint-R-r</rearRightJoint>
-
-        <wheelSeparation>0.44</wheelSeparation>
-        <wheelDiameter>0.3</wheelDiameter>
-        
-
-        <torque>100</torque>
-  </plugin>
-</gazebo>
-
--->
-
-
-<!--
   <gazebo>
-    <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
-      <legacyMode>false</legacyMode>
+    <plugin name="diffdrive_plugin_6w" filename="libdiffdrive_plugin_6w.so">
       <alwaysOn>true</alwaysOn>
-      <updateRate>10</updateRate>
-      <leftJoint>joint-L-f</leftJoint>
-      <leftJoint>joint-L-m</leftJoint>
-      <leftJoint>joint-L-r</leftJoint>
-      <rightJoint>joint-R-f</rightJoint>
-      <rightJoint>joint-R-m</rightJoint>
-      <rightJoint>joint-R-r</rightJoint>
-      <wheelSeparation>0.30</wheelSeparation>
-      <wheelDiameter>0.2</wheelDiameter>
-      <torque>30</torque>
+      <updateRate>20.0</updateRate>
+      <frontLeftJoint>joint-L-f</frontLeftJoint>
+      <frontRightJoint>joint-R-f</frontRightJoint>
+      <midLeftJoint>joint-L-m</midLeftJoint>
+      <midRightJoint>joint-R-m</midRightJoint>
+      <rearLeftJoint>joint-L-r</rearLeftJoint>
+      <rearRightJoint>joint-R-r</rearRightJoint>
+      <wheelSeparation>0.2</wheelSeparation>
+      <wheelDiameter>0.02</wheelDiameter>
+      <torque>240</torque>
+      <robotBaseFrame>base_link</robotBaseFrame>
       <commandTopic>cmd_vel</commandTopic>
       <odometryTopic>odom</odometryTopic>
       <odometryFrame>odom</odometryFrame>
-      <robotBaseFrame>chassis</robotBaseFrame>
     </plugin>
+  </gazebo>
+
+  <gazebo reference="imu_link">
+    <sensor type="imu" name="imu">
+      <always_on>true</always_on>
+      <visualize>true</visualize>
+    </sensor>
+    <material>Gazebo/Grey</material>
+  </gazebo>
+
+  <gazebo>
+    <plugin name="imu_plugin" filename="libgazebo_ros_imu.so">
+      <alwaysOn>true</alwaysOn>
+      <bodyName>base_link</bodyName>
+      <frameName>imu_link</frameName>
+      <topicName>imu</topicName>
+      <serviceName>imu_service</serviceName>
+      <gaussianNoise>0.0</gaussianNoise>
+      <updateRate>200</updateRate>
+      <imu>
+        <noise>
+          <type>gaussian</type>
+          <rate>
+            <mean>0.0</mean>
+            <stddev>2e-4</stddev>
+            <bias_mean>0.0000075</bias_mean>
+            <bias_stddev>0.0000008</bias_stddev>
+          </rate>
+          <accel>
+            <mean>0.0</mean>
+            <stddev>1.7e-2</stddev>
+            <bias_mean>0.1</bias_mean>
+            <bias_stddev>0.001</bias_stddev>
+          </accel>
+        </noise>
+      </imu>
+    </plugin>
+  </gazebo>
+
+  <!-- Camera & Laser -->
+  <joint name="camera_joint" type="fixed">
+    <axis xyz="0 1 0" />
+    <origin xyz="0.05 0 0.25" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="camera_link"/>
+  </joint>
+
+  <link name="camera_link">
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.05 0.05 0.05"/>
+      </geometry>
+    </collision>
+
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+    <box size="0.05 0.05 0.05"/>
+      </geometry>
+    </visual>
+
+    <inertial>
+      <mass value="1e-5" />
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+    </inertial>
+  </link>
+
+<!-- hokuyo -->
+  <gazebo reference="camera_link">
+    <sensor type="gpu_ray" name="head_hokuyo_sensor">
+      <pose>0 0 0 0 0 0</pose>
+      <visualize>true</visualize>
+      <update_rate>40</update_rate>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>240</samples>
+            <resolution>1</resolution>
+            <min_angle>-1.0467</min_angle>
+            <max_angle>1.0467</max_angle>
+          </horizontal>
+        </scan>
+        <range>
+          <min>0.10</min>
+          <max>30.0</max>
+          <resolution>0.01</resolution>
+        </range>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      </ray>
+      <plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_gpu_laser.so">
+        <topicName>laser/scan</topicName>
+        <frameName>camera_link</frameName>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+  <gazebo reference="camera_link">
+    <sensor type="camera" name="camera1">
+      <update_rate>30.0</update_rate>
+      <camera name="head">
+        <horizontal_fov>1.3962634</horizontal_fov>
+        <image>
+          <width>800</width>
+          <height>800</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.02</near>
+          <far>300</far>
+        </clip>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.00</stddev>
+        </noise>
+      </camera>
+      <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+        <alwaysOn>true</alwaysOn>
+        <updateRate>0.0</updateRate>
+        <cameraName>rover/camera1</cameraName>
+        <imageTopicName>image_raw</imageTopicName>
+        <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+        <frameName>camera_link</frameName>
+        <hackBaseline>0.07</hackBaseline>
+        <distortionK1>0.0</distortionK1>
+        <distortionK2>0.0</distortionK2>
+        <distortionK3>0.0</distortionK3>
+        <distortionT1>0.0</distortionT1>
+        <distortionT2>0.0</distortionT2>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+  <gazebo>
+    <plugin name="p3d_base_controller" filename="libgazebo_ros_p3d.so">
+      <alwaysOn>true</alwaysOn>
+      <updateRate>50.0</updateRate>
+      <bodyName>base_link</bodyName>
+      <topicName>odom</topicName>
+      <gaussianNoise>0.01</gaussianNoise>
+      <frameName>map</frameName>
+      <xyzOffsets>0 0 0</xyzOffsets>
+      <rpyOffsets>0 0 0</rpyOffsets>
+    </plugin>
+  </gazebo>
+
+<!--
+  <gazebo reference="cam_link">
+    <sensor type="depth" name="cam">
+      <always_on>true</always_on>
+      <update_rate>20.0</update_rate>
+      <camera>
+        <horizontal_fov>1.05</horizontal_fov>
+        <image>
+          <format>R8G8B8</format>
+          <width>640</width>
+          <height>480</height>
+        </image>
+        <clip>
+          <near>0.05</near>
+          <far>8.0</far>
+        </clip>
+      </camera>
+      <plugin name="kinect_cam_controller" filename="libgazebo_ros_openni_kinect.so">
+        <cameraName>cam</cameraName>
+        <alwaysOn>true</alwaysOn>
+        <updateRate>10</updateRate>
+        <imageTopicName>rgb/image_raw</imageTopicName>
+        <depthImageTopicName>depth/image_raw</depthImageTopicName>
+        <pointCloudTopicName>depth/points</pointCloudTopicName>
+        <cameraInfoTopicName>rgb/camera_info</cameraInfoTopicName>
+        <depthImageCameraInfoTopicName>depth/camera_info</depthImageCameraInfoTopicName>
+        <frameName>cam_frame_optical</frameName>
+        <baseline>0.1</baseline>
+        <distortion_k1>0.0</distortion_k1>
+        <distortion_k2>0.0</distortion_k2>
+        <distortion_k3>0.0</distortion_k3>
+        <distortion_t1>0.0</distortion_t1>
+        <distortion_t2>0.0</distortion_t2>
+        <pointCloudCutoff>0.4</pointCloudCutoff>
+      </plugin>
+    </sensor>
   </gazebo> -->
 </robot>
