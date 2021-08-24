@@ -3,7 +3,7 @@
      Commit Version: 1.6.0-1-g15f4949  Build Version: 1.6.7594.29634
      For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
 <robot
-  name="SURover22_description_byerenna">
+  name="SURover22_description_byerenna" >
   <link
     name="base_link">
     <inertial>
@@ -85,7 +85,7 @@
     </collision>
   </link>
   <joint
-    name="joint-R-f"
+    name="joint_R_f"
     type="continuous">
     <origin
       xyz="0.548838296645782 -0.351080000000064 -0.428087514508932"
@@ -138,7 +138,7 @@
     </collision>
   </link>
   <joint
-    name="joint-R-m"
+    name="joint_R_m"
     type="continuous">
     <origin
       xyz="0.068456 -0.38608 -0.42809"
@@ -191,7 +191,7 @@
     </collision>
   </link>
   <joint
-    name="joint-R-r"
+    name="joint_R_r"
     type="continuous">
     <origin
       xyz="-0.43561 -0.38608 -0.42822"
@@ -244,7 +244,7 @@
     </collision>
   </link>
   <joint
-    name="joint-L-f"
+    name="joint_L_f"
     type="continuous">
     <origin
       xyz="0.548812606572592 0.426079999999846 -0.428126101607028"
@@ -297,7 +297,7 @@
     </collision>
   </link>
   <joint
-    name="joint-L-m"
+    name="joint_L_m"
     type="continuous">
     <origin
       xyz="0.068429 0.46108 -0.42809"
@@ -350,7 +350,7 @@
     </collision>
   </link>
   <joint
-    name="joint-L-r"
+    name="joint_L_r"
     type="continuous">
     <origin
       xyz="-0.43564 0.46108 -0.42817"
@@ -370,7 +370,7 @@
     <actuator name="left_front_motor">
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
-    <joint name="joint-L-f">
+    <joint name="joint_L_f">
       <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
     </joint>
   </transmission>
@@ -380,7 +380,27 @@
     <actuator name="right_front_motor">
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
-    <joint name="joint-R-f">
+    <joint name="joint_R_f">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    </joint>
+  </transmission>
+
+  <transmission name="left_mid_trans" type="SimpleTransmission">
+    <type>transmission_interface/SimpleTransmission</type>
+    <actuator name="left_mid_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+    <joint name="joint_L_m">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    </joint>
+  </transmission>
+
+  <transmission name="right_mid_trans" type="SimpleTransmission">
+    <type>transmission_interface/SimpleTransmission</type>
+    <actuator name="right_mid_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+    <joint name="joint_R_m">
       <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
     </joint>
   </transmission>
@@ -390,7 +410,7 @@
     <actuator name="left_rear_motor">
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
-    <joint name="joint-L-r">
+    <joint name="joint_L_r">
       <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
     </joint>
   </transmission>
@@ -400,30 +420,52 @@
     <actuator name="right_rear_motor">
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
-    <joint name="joint-R-r">
+    <joint name="joint_R_r">
       <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
     </joint>
   </transmission>
 
+
+
+<!--
   <gazebo>
     <plugin name="diffdrive_plugin_6w" filename="libdiffdrive_plugin_6w.so">
       <alwaysOn>true</alwaysOn>
-      <updateRate>20.0</updateRate>
-      <frontLeftJoint>joint-L-f</frontLeftJoint>
-      <frontRightJoint>joint-R-f</frontRightJoint>
-      <midLeftJoint>joint-L-m</midLeftJoint>
-      <midRightJoint>joint-R-m</midRightJoint>
-      <rearLeftJoint>joint-L-r</rearLeftJoint>
-      <rearRightJoint>joint-R-r</rearRightJoint>
-      <wheelSeparation>0.2</wheelSeparation>
-      <wheelDiameter>0.02</wheelDiameter>
-      <torque>240</torque>
-      <robotBaseFrame>base_link</robotBaseFrame>
+      <updateRate>30.0</updateRate>
+
+      <frontLeftJoint>joint_L_f</frontLeftJoint>
+      <frontRightJoint>joint_R_f</frontRightJoint>
+      <midLeftJoint>joint_L_m</midLeftJoint>
+      <midRightJoint>joint_R_m</midRightJoint>
+      <rearLeftJoint>joint_L_r</rearLeftJoint>
+      <rearRightJoint>joint_R_r</rearRightJoint>
+      
+      <wheelSeparation>0.44</wheelSeparation>
+      <wheelDiameter>0.3</wheelDiameter>
+      <torque>100</torque>
+      
+      <robotBaseFrame>base_footprint</robotBaseFrame>
       <commandTopic>cmd_vel</commandTopic>
       <odometryTopic>odom</odometryTopic>
       <odometryFrame>odom</odometryFrame>
+      <broadcastTF>true</broadcastTF>
+    </plugin>
+
+
+</gazebo>
+  -->
+
+
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <!-- <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType> -->
+      
     </plugin>
   </gazebo>
+
+
+
+<!--
 
   <gazebo reference="imu_link">
     <sensor type="imu" name="imu">
@@ -461,7 +503,7 @@
       </imu>
     </plugin>
   </gazebo>
-
+-->
   <!-- Camera & Laser -->
   <joint name="camera_joint" type="fixed">
     <axis xyz="0 1 0" />
@@ -494,23 +536,23 @@
 
 <!-- hokuyo -->
   <gazebo reference="camera_link">
-    <sensor type="gpu_ray" name="head_hokuyo_sensor">
+    <sensor type="ray" name="head_hokuyo_sensor">
       <pose>0 0 0 0 0 0</pose>
       <visualize>true</visualize>
-      <update_rate>40</update_rate>
+      <update_rate>20</update_rate>
       <ray>
         <scan>
           <horizontal>
             <samples>240</samples>
-            <resolution>1</resolution>
-            <min_angle>-1.0467</min_angle>
-            <max_angle>1.0467</max_angle>
+            <resolution>0.5</resolution>
+            <min_angle>-0.8</min_angle>
+            <max_angle>0.8</max_angle>
           </horizontal>
         </scan>
         <range>
           <min>0.10</min>
-          <max>30.0</max>
-          <resolution>0.01</resolution>
+          <max>20.0</max>
+          <resolution>0.05</resolution>
         </range>
         <noise>
           <type>gaussian</type>
@@ -518,7 +560,7 @@
           <stddev>0.01</stddev>
         </noise>
       </ray>
-      <plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_gpu_laser.so">
+      <plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_laser.so">
         <topicName>laser/scan</topicName>
         <frameName>camera_link</frameName>
       </plugin>
@@ -527,7 +569,7 @@
 
   <gazebo reference="camera_link">
     <sensor type="camera" name="camera1">
-      <update_rate>30.0</update_rate>
+      <update_rate>20.0</update_rate>
       <camera name="head">
         <horizontal_fov>1.3962634</horizontal_fov>
         <image>
@@ -561,7 +603,7 @@
       </plugin>
     </sensor>
   </gazebo>
-
+<!--
   <gazebo>
     <plugin name="p3d_base_controller" filename="libgazebo_ros_p3d.so">
       <alwaysOn>true</alwaysOn>
@@ -574,7 +616,14 @@
       <rpyOffsets>0 0 0</rpyOffsets>
     </plugin>
   </gazebo>
-
+-->
+  <gazebo>
+        <plugin name="joint_state_publisher" filename="libgazebo_ros_joint_state_publisher.so">
+           <jointName>joint_L_f, joint_L_m, joint_L_r, joint_R_f, joint_R_m, joint_R_r</jointName>
+           <updateRate>10.0</updateRate>
+           <alwaysOn>true</alwaysOn>
+        </plugin>
+    </gazebo>
 <!--
   <gazebo reference="cam_link">
     <sensor type="depth" name="cam">

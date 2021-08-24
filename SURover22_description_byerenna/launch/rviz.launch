@@ -5,7 +5,8 @@
   <param name="robot_description" command="$(find xacro)/xacro $(arg model)" />
   <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
-
-  <arg name="rvizconfig" default="$(find SURover22_description_byerenna)/rviz/config.rviz" />
+  <remap from="src/joint_states" to="/src/SURover22/joint_states" />
+  <arg name="rvizconfig" default="$(find SURover22_description_byerenna)/config/config.rviz" />
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" /> 
+  <rosparam file="$(find SURover22_description_byerenna)/config/diff_controllers.yaml" command="load" />
 </launch>

@@ -1,0 +1,1027 @@
+<sdf version='1.7'>
+  <world name='default'>
+    <light name='sun' type='directional'>
+      <cast_shadows>1</cast_shadows>
+      <pose>0 0 10 0 -0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <attenuation>
+        <range>1000</range>
+        <constant>0.9</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <direction>-0.5 0.1 -0.9</direction>
+      <spot>
+        <inner_angle>0</inner_angle>
+        <outer_angle>0</outer_angle>
+        <falloff>0</falloff>
+      </spot>
+    </light>
+    <model name='ground_plane'>
+      <static>1</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <surface>
+            <contact>
+              <collide_bitmask>65535</collide_bitmask>
+              <ode/>
+            </contact>
+            <friction>
+              <ode>
+                <mu>100</mu>
+                <mu2>50</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='visual'>
+          <cast_shadows>0</cast_shadows>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <gravity>0 0 -9.8</gravity>
+    <magnetic_field>6e-06 2.3e-05 -4.2e-05</magnetic_field>
+    <atmosphere type='adiabatic'/>
+    <physics type='ode'>
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>1000</real_time_update_rate>
+    </physics>
+    <scene>
+      <ambient>0.4 0.4 0.4 1</ambient>
+      <background>0.7 0.7 0.7 1</background>
+      <shadows>1</shadows>
+    </scene>
+    <wind/>
+    <spherical_coordinates>
+      <surface_model>EARTH_WGS84</surface_model>
+      <latitude_deg>0</latitude_deg>
+      <longitude_deg>0</longitude_deg>
+      <elevation>0</elevation>
+      <heading_deg>0</heading_deg>
+    </spherical_coordinates>
+    <model name='SURover22_description_byerenna'>
+      <link name='base_link'>
+        <inertial>
+          <pose>0.000235 -4.5e-05 -0.14162 0 -0 0</pose>
+          <mass>20.605</mass>
+          <inertia>
+            <ixx>0.454003</ixx>
+            <ixy>1.93261e-09</ixy>
+            <ixz>0.000848035</ixz>
+            <iyy>1.0629</iyy>
+            <iyz>1.59206e-08</iyz>
+            <izz>1.4823</izz>
+          </inertia>
+        </inertial>
+        <collision name='base_link_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/mertture/catkin_ws/src/SURover22/SURover22_description_byerenna/meshes/base_link.STL</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='base_link_fixed_joint_lump__camera_link_collision_1'>
+          <pose>0.05 0 0.25 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.05 0.05 0.05</size>
+            </box>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode/>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='base_link_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/mertture/catkin_ws/src/SURover22/SURover22_description_byerenna/meshes/base_link.STL</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='base_link_fixed_joint_lump__camera_link_visual_1'>
+          <pose>0.05 0 0.25 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.05 0.05 0.05</size>
+            </box>
+          </geometry>
+        </visual>
+        <velocity_decay/>
+        <sensor name='head_hokuyo_sensor' type='ray'>
+          <visualize>1</visualize>
+          <update_rate>40</update_rate>
+          <ray>
+            <scan>
+              <horizontal>
+                <samples>240</samples>
+                <resolution>1</resolution>
+                <min_angle>-1.0467</min_angle>
+                <max_angle>1.0467</max_angle>
+              </horizontal>
+              <vertical>
+                <samples>1</samples>
+                <min_angle>0</min_angle>
+                <max_angle>0</max_angle>
+              </vertical>
+            </scan>
+            <range>
+              <min>0.1</min>
+              <max>30</max>
+              <resolution>0.01</resolution>
+            </range>
+            <noise>
+              <type>gaussian</type>
+              <mean>0</mean>
+              <stddev>0.01</stddev>
+            </noise>
+          </ray>
+          <plugin name='gazebo_ros_head_hokuyo_controller' filename='libgazebo_ros_laser.so'>
+            <topicName>laser/scan</topicName>
+            <frameName>camera_link</frameName>
+            <robotNamespace>/</robotNamespace>
+          </plugin>
+          <pose>0.05 0 0.25 0 -0 0</pose>
+        </sensor>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <sensor name='camera1' type='camera'>
+          <update_rate>30</update_rate>
+          <camera name='head'>
+            <horizontal_fov>1.39626</horizontal_fov>
+            <image>
+              <width>800</width>
+              <height>800</height>
+              <format>R8G8B8</format>
+            </image>
+            <clip>
+              <near>0.02</near>
+              <far>300</far>
+            </clip>
+            <noise>
+              <type>gaussian</type>
+              <mean>0</mean>
+              <stddev>0</stddev>
+            </noise>
+          </camera>
+          <plugin name='camera_controller' filename='libgazebo_ros_camera.so'>
+            <alwaysOn>1</alwaysOn>
+            <updateRate>0.0</updateRate>
+            <cameraName>rover/camera1</cameraName>
+            <imageTopicName>image_raw</imageTopicName>
+            <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+            <frameName>camera_link</frameName>
+            <hackBaseline>0.07</hackBaseline>
+            <distortionK1>0.0</distortionK1>
+            <distortionK2>0.0</distortionK2>
+            <distortionK3>0.0</distortionK3>
+            <distortionT1>0.0</distortionT1>
+            <distortionT2>0.0</distortionT2>
+            <robotNamespace>/</robotNamespace>
+          </plugin>
+          <pose>0.05 0 0.25 0 -0 0</pose>
+        </sensor>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='joint-L-f' type='revolute'>
+        <pose relative_to='base_link'>0.548813 0.42608 -0.428126 0 -0 0</pose>
+        <parent>base_link</parent>
+        <child>L-front</child>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='L-front'>
+        <pose relative_to='joint-L-f'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 -0.0375 0 0 -0 0</pose>
+          <mass>2.3326</mass>
+          <inertia>
+            <ixx>0.0069833</ixx>
+            <ixy>-1.245e-16</ixy>
+            <ixz>-6.9538e-33</ixz>
+            <iyy>0.01178</iyy>
+            <iyz>2.6789e-19</iyz>
+            <izz>0.0069833</izz>
+          </inertia>
+        </inertial>
+        <collision name='L-front_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/mertture/catkin_ws/src/SURover22/SURover22_description_byerenna/meshes/L-front.STL</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='L-front_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/mertture/catkin_ws/src/SURover22/SURover22_description_byerenna/meshes/L-front.STL</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='joint-L-m' type='revolute'>
+        <pose relative_to='base_link'>0.068429 0.46108 -0.42809 0 -0 0</pose>
+        <parent>base_link</parent>
+        <child>L-mid</child>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='L-mid'>
+        <pose relative_to='joint-L-m'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 -0.0375 -0 0 -0 0</pose>
+          <mass>2.3326</mass>
+          <inertia>
+            <ixx>0.0069833</ixx>
+            <ixy>-6.1418e-16</ixy>
+            <ixz>-2.7012e-19</ixz>
+            <iyy>0.01178</iyy>
+            <iyz>5.0407e-17</iyz>
+            <izz>0.0069833</izz>
+          </inertia>
+        </inertial>
+        <collision name='L-mid_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/mertture/catkin_ws/src/SURover22/SURover22_description_byerenna/meshes/L-mid.STL</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='L-mid_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/mertture/catkin_ws/src/SURover22/SURover22_description_byerenna/meshes/L-mid.STL</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='joint-L-r' type='revolute'>
+        <pose relative_to='base_link'>-0.43564 0.46108 -0.42817 0 -0 0</pose>
+        <parent>base_link</parent>
+        <child>L-rear</child>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='L-rear'>
+        <pose relative_to='joint-L-r'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 -0.0375 -0 0 -0 0</pose>
+          <mass>2.3326</mass>
+          <inertia>
+            <ixx>0.0069833</ixx>
+            <ixy>-6.2773e-16</ixy>
+            <ixz>-2.1099e-19</ixz>
+            <iyy>0.01178</iyy>
+            <iyz>7.7451e-16</iyz>
+            <izz>0.0069833</izz>
+          </inertia>
+        </inertial>
+        <collision name='L-rear_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/mertture/catkin_ws/src/SURover22/SURover22_description_byerenna/meshes/L-rear.STL</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='L-rear_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/mertture/catkin_ws/src/SURover22/SURover22_description_byerenna/meshes/L-rear.STL</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='joint-R-f' type='revolute'>
+        <pose relative_to='base_link'>0.548838 -0.35108 -0.428088 0 -0 0</pose>
+        <parent>base_link</parent>
+        <child>R-front</child>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='R-front'>
+        <pose relative_to='joint-R-f'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 -0.0375 0 0 -0 0</pose>
+          <mass>2.3326</mass>
+          <inertia>
+            <ixx>0.0069833</ixx>
+            <ixy>-1.1181e-16</ixy>
+            <ixz>7.4623e-19</ixz>
+            <iyy>0.01178</iyy>
+            <iyz>-2.014e-17</iyz>
+            <izz>0.0069833</izz>
+          </inertia>
+        </inertial>
+        <collision name='R-front_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/mertture/catkin_ws/src/SURover22/SURover22_description_byerenna/meshes/R-front.STL</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='R-front_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/mertture/catkin_ws/src/SURover22/SURover22_description_byerenna/meshes/R-front.STL</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='joint-R-m' type='revolute'>
+        <pose relative_to='base_link'>0.068456 -0.38608 -0.42809 0 -0 0</pose>
+        <parent>base_link</parent>
+        <child>R-mid</child>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='R-mid'>
+        <pose relative_to='joint-R-m'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>-0 -0.0375 -0 0 -0 0</pose>
+          <mass>2.33263</mass>
+          <inertia>
+            <ixx>0.00698332</ixx>
+            <ixy>-1.30246e-19</ixy>
+            <ixz>-7.41034e-19</ixz>
+            <iyy>0.0117798</iyy>
+            <iyz>1.28115e-19</iyz>
+            <izz>0.00698332</izz>
+          </inertia>
+        </inertial>
+        <collision name='R-mid_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/mertture/catkin_ws/src/SURover22/SURover22_description_byerenna/meshes/R-mid.STL</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='R-mid_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/mertture/catkin_ws/src/SURover22/SURover22_description_byerenna/meshes/R-mid.STL</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='joint-R-r' type='revolute'>
+        <pose relative_to='base_link'>-0.43561 -0.38608 -0.42822 0 -0 0</pose>
+        <parent>base_link</parent>
+        <child>R-rear</child>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='R-rear'>
+        <pose relative_to='joint-R-r'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 -0.0375 -0 0 -0 0</pose>
+          <mass>2.3326</mass>
+          <inertia>
+            <ixx>0.0069833</ixx>
+            <ixy>-8.3231e-16</ixy>
+            <ixz>8.0388e-19</ixz>
+            <iyy>0.01178</iyy>
+            <iyz>6.734e-16</iyz>
+            <izz>0.0069833</izz>
+          </inertia>
+        </inertial>
+        <collision name='R-rear_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/mertture/catkin_ws/src/SURover22/SURover22_description_byerenna/meshes/R-rear.STL</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='R-rear_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/mertture/catkin_ws/src/SURover22/SURover22_description_byerenna/meshes/R-rear.STL</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <plugin name='diffdrive_plugin_6w' filename='libdiffdrive_plugin_6w.so'>
+        <alwaysOn>1</alwaysOn>
+        <updateRate>30.0</updateRate>
+        <frontLeftJoint>joint-L-f</frontLeftJoint>
+        <frontRightJoint>joint-R-f</frontRightJoint>
+        <midLeftJoint>joint-L-m</midLeftJoint>
+        <midRightJoint>joint-R-m</midRightJoint>
+        <rearLeftJoint>joint-L-r</rearLeftJoint>
+        <rearRightJoint>joint-R-r</rearRightJoint>
+        <wheelSeparation>0.44</wheelSeparation>
+        <wheelDiameter>0.3</wheelDiameter>
+        <torque>100</torque>
+        <robotBaseFrame>base_footprint</robotBaseFrame>
+        <commandTopic>cmd_vel</commandTopic>
+        <odometryTopic>odom</odometryTopic>
+        <odometryFrame>odom</odometryFrame>
+        <broadcastTF>1</broadcastTF>
+        <robotNamespace>/</robotNamespace>
+      </plugin>
+      <plugin name='imu_plugin' filename='libgazebo_ros_imu.so'>
+        <alwaysOn>1</alwaysOn>
+        <bodyName>base_link</bodyName>
+        <frameName>imu_link</frameName>
+        <topicName>imu</topicName>
+        <serviceName>imu_service</serviceName>
+        <gaussianNoise>0.0</gaussianNoise>
+        <updateRate>200</updateRate>
+        <imu>
+          <noise>
+            <type>gaussian</type>
+            <rate>
+              <mean>0.0</mean>
+              <stddev>2e-4</stddev>
+              <bias_mean>0.0000075</bias_mean>
+              <bias_stddev>0.0000008</bias_stddev>
+            </rate>
+            <accel>
+              <mean>0.0</mean>
+              <stddev>1.7e-2</stddev>
+              <bias_mean>0.1</bias_mean>
+              <bias_stddev>0.001</bias_stddev>
+            </accel>
+          </noise>
+        </imu>
+        <robotNamespace>/</robotNamespace>
+      </plugin>
+      <plugin name='p3d_base_controller' filename='libgazebo_ros_p3d.so'>
+        <alwaysOn>1</alwaysOn>
+        <updateRate>50.0</updateRate>
+        <bodyName>base_link</bodyName>
+        <topicName>odom</topicName>
+        <gaussianNoise>0.01</gaussianNoise>
+        <frameName>map</frameName>
+        <xyzOffsets>0 0 0</xyzOffsets>
+        <rpyOffsets>0 0 0</rpyOffsets>
+        <robotNamespace>/</robotNamespace>
+      </plugin>
+      <static>0</static>
+      <plugin name='joint_state_publisher' filename='libgazebo_ros_joint_state_publisher.so'>
+        <robotNamespace>/src/SURover22</robotNamespace>
+        <jointName>joint-L-f, joint-L-m, joint-L-r, joint-R-f, joint-R-m, joint-R-r</jointName>
+        <updateRate>10.0</updateRate>
+        <alwaysOn>1</alwaysOn>
+      </plugin>
+      <pose>0 0 0 0 -0 0</pose>
+    </model>
+    <model name='unit_box'>
+      <pose>4.53614 1.54706 0.5 0 -0 0</pose>
+      <link name='link'>
+        <inertial>
+          <mass>1</mass>
+          <inertia>
+            <ixx>0.166667</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.166667</iyy>
+            <iyz>0</iyz>
+            <izz>0.166667</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>1 1 1</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>1 1 1</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <model name='unit_box_0'>
+      <pose>4.50961 -1.54927 0.5 0 -0 0</pose>
+      <link name='link'>
+        <inertial>
+          <mass>1</mass>
+          <inertia>
+            <ixx>0.166667</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.166667</iyy>
+            <iyz>0</iyz>
+            <izz>0.166667</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>1 1 1</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>1 1 1</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <model name='unit_cylinder'>
+      <pose>2.8974 -4.3779 0.5 0 -0 0</pose>
+      <link name='link'>
+        <inertial>
+          <mass>1</mass>
+          <inertia>
+            <ixx>0.145833</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.145833</iyy>
+            <iyz>0</iyz>
+            <izz>0.125</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name='collision'>
+          <geometry>
+            <cylinder>
+              <radius>0.5</radius>
+              <length>1</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <cylinder>
+              <radius>0.5</radius>
+              <length>1</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <model name='unit_cylinder_0'>
+      <pose>2.67178 3.28694 0.5 0 -0 0</pose>
+      <link name='link'>
+        <inertial>
+          <mass>1</mass>
+          <inertia>
+            <ixx>0.145833</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.145833</iyy>
+            <iyz>0</iyz>
+            <izz>0.125</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name='collision'>
+          <geometry>
+            <cylinder>
+              <radius>0.5</radius>
+              <length>1</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <cylinder>
+              <radius>0.5</radius>
+              <length>1</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <state world_name='default'>
+      <sim_time>59 524000000</sim_time>
+      <real_time>63 819699324</real_time>
+      <wall_time>1628880503 747896653</wall_time>
+      <iterations>59524</iterations>
+      <model name='SURover22_description_byerenna'>
+        <pose>-0.006803 -0.018087 0.527856 -4.2e-05 1.5e-05 -0.03006</pose>
+        <scale>1 1 1</scale>
+        <link name='L-front'>
+          <pose>0.554561 0.391286 0.099703 -7.7e-05 -0.325007 -0.030038</pose>
+          <velocity>0.000723 0.000256 4.3e-05 -0.002451 0.007253 0.000472</velocity>
+          <acceleration>0.337073 -0.035852 0.094183 -2.6807 1.22334 -0.266526</acceleration>
+          <wrench>0.786256 -0.083628 0.219692 0 -0 0</wrench>
+        </link>
+        <link name='L-mid'>
+          <pose>0.075446 0.44071 0.099746 -4.3e-05 -0.211598 -0.030051</pose>
+          <velocity>0.000687 9e-06 5.6e-05 0.00028 -0.000224 0.000657</velocity>
+          <acceleration>0.344586 0.071686 0.096455 0.203524 -0.008616 -0.082394</acceleration>
+          <wrench>0.803782 0.167216 0.224992 0 -0 0</wrench>
+        </link>
+        <link name='L-rear'>
+          <pose>-0.428395 0.45586 0.099673 -6.4e-05 -0.227858 -0.030045</pose>
+          <velocity>0.000649 -0.000294 -4.9e-05 0.003041 0.006515 0.000714</velocity>
+          <acceleration>0.319991 0.140577 0.003829 2.8244 0.417288 -0.024665</acceleration>
+          <wrench>0.746412 0.327909 0.008932 0 -0 0</wrench>
+        </link>
+        <link name='R-front'>
+          <pose>0.531228 -0.385522 0.099775 -4.2e-05 -0.176209 -0.030053</pose>
+          <velocity>0.00126 0.000277 3.4e-05 0.000135 -0.000219 0.000702</velocity>
+          <acceleration>0.308574 0.002657 0.043799 0.05786 -0.00245 -0.037302</acceleration>
+          <wrench>0.719779 0.006199 0.102165 0 -0 0</wrench>
+        </link>
+        <link name='R-mid'>
+          <pose>0.050012 -0.406065 0.099784 5.2e-05 0.007674 -0.030065</pose>
+          <velocity>0.001279 -3.8e-05 -0.000106 9.7e-05 0.013448 0.000797</velocity>
+          <acceleration>0.315564 0.042736 0.027184 -0.261583 1.1079 0.057156</acceleration>
+          <wrench>0.736095 0.099688 0.06341 0 -0 0</wrench>
+        </link>
+        <link name='R-rear'>
+          <pose>-0.453827 -0.390918 0.09966 -3.9e-05 -0.371592 -0.030045</pose>
+          <velocity>0.001271 -0.000443 -0.000399 -0.001478 -0.000171 0.000362</velocity>
+          <acceleration>0.302592 0.011292 -0.113506 -1.55492 0.065768 -0.376916</acceleration>
+          <wrench>0.705827 0.026341 -0.264765 0 -0 0</wrench>
+        </link>
+        <link name='base_link'>
+          <pose>-0.006803 -0.018087 0.527856 -4.2e-05 1.5e-05 -0.03006</pose>
+          <velocity>0.000867 -0.000147 -0.000104 9.9e-05 -0.000258 0.000643</velocity>
+          <acceleration>0.287388 0.011446 -0.002468 0.023635 -0.040457 -0.095706</acceleration>
+          <wrench>5.92162 0.235837 -0.05085 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='ground_plane'>
+        <pose>0 0 0 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>0 0 0 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='unit_box'>
+        <pose>4.53614 1.54706 0.499995 -1e-05 -0 -0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>4.53614 1.54706 0.499995 -1e-05 -0 -0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0.004709 0.011055 -9.78158 -0.022108 0.009414 1e-06</acceleration>
+          <wrench>0.004709 0.011055 -9.78158 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='unit_box_0'>
+        <pose>4.50962 -1.54927 0.499995 0 1e-05 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>4.50962 -1.54927 0.499995 0 1e-05 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0.010615 -0.006191 -9.78231 0.012424 0.021225 1.8e-05</acceleration>
+          <wrench>0.010615 -0.006191 -9.78231 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='unit_cylinder'>
+        <pose>2.8974 -4.3779 0.499993 -3e-06 -4e-06 -0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>2.8974 -4.3779 0.499993 -3e-06 -4e-06 -0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 -9.8 0 -0 0</acceleration>
+          <wrench>0 0 -9.8 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='unit_cylinder_0'>
+        <pose>2.67178 3.28694 0.499997 3e-06 4e-06 -0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>2.67178 3.28694 0.499997 3e-06 4e-06 -0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 -9.8 0 -0 0</acceleration>
+          <wrench>0 0 -9.8 0 -0 0</wrench>
+        </link>
+      </model>
+      <light name='sun'>
+        <pose>0 0 10 0 -0 0</pose>
+      </light>
+    </state>
+    <gui fullscreen='0'>
+      <camera name='user_camera'>
+        <pose>-1.56033 -7.37207 4.8329 0 0.491643 0.876194</pose>
+        <view_controller>orbit</view_controller>
+        <projection_type>perspective</projection_type>
+      </camera>
+    </gui>
+  </world>
+</sdf>

@@ -1,34 +1,45 @@
 <launch>
     
-  <include file="$(find gazebo_ros)/launch/empty_world.launch">
-    <arg name="world_name" value="$(find SURover22_description_byerenna)/worlds/house.world"/>
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+      <arg name="world_name" value="$(find SURover22_description_byerenna)/worlds/house.world"/>
 
-    <arg name="paused" value="false"/>
-    <arg name="use_sim_time" value="true"/>
-    <arg name="gui" value="true"/>
-    <arg name="headless" value="false"/>
-    <arg name="debug" value="false"/>
-  </include>
-  <node
-    name="tf_footprint_base"
-    pkg="tf"
-    type="static_transform_publisher"
-    args="0 0 0 0 0 0 base_link base_footprint 40" />
-  <node
-    name="spawn_model"
-    pkg="gazebo_ros"
-    type="spawn_model"
-    args="-file $(find SURover22_description_byerenna)/urdf/SURover22_description_byerenna.urdf -x 0 -y -5 -z 0.52 -urdf -model SURover22_description_byerenna"
-    output="screen" />
-  <node
-    name="fake_joint_calibration"
-    pkg="rostopic"
-    type="rostopic"
-    args="pub /calibrated std_msgs/Bool true" />
-   <rosparam file="$(find SURover22_description_byerenna)/config/diff_controllers.yaml" command="load" />
+      <arg name="paused" value="false"/>
+      <arg name="use_sim_time" value="true"/>
+      <arg name="gui" value="true"/>
+      <arg name="headless" value="false"/>
+      <arg name="debug" value="false"/>
+    </include>
+    <node
+      name="tf_footprint_base"
+      pkg="tf"
+      type="static_transform_publisher"
+      args="0 0 0 0 0 0 base_link base_footprint 40" />
 
+
+
+      <param name="robot_description" command="xacro --inorder $(find SURover22_description_byerenna)/urdf/SURover22_description_byerenna.urdf.xacro"/>
+
+<!--args="-file $(find SURover22_description_byerenna)/urdf/SURover22_description_byerenna.urdf -x 0 -y -5 -z 0.6 -urdf -model /SURover22_description_byerenna" -->
+    <node
+      name="spawn_model"
+      pkg="gazebo_ros"
+      type="spawn_model"
+      args="-x 0 -y -5 -z 1 -urdf -param robot_description -model SURover22_description_byerenna"
+      output="screen" />
+    <node
+      name="fake_joint_calibration"
+      pkg="rostopic"
+      type="rostopic"
+      args="pub /calibrated std_msgs/Bool true" />
+    
+    <rosparam file="$(find SURover22_description_byerenna)/config/diff_controllers.yaml" command="load" />
+
+
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+  
     <node name="controller_spawner" pkg="controller_manager" type="spawner"
-          respawn="false" output="screen" args="SURover_velocity_controller" />
+          respawn="false" output="screen" args="SURover_joint_publisher SURover_velocity_controller" />
+        
 
 
 </launch>

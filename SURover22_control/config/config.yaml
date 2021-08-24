@@ -1,0 +1,35 @@
+SURover22:
+  # Publish all joint states _----------------------------------
+  joint_state_controller:
+    type: joint_state_controller/JointStateController
+    publish_rate: 50  
+
+  # Position Controllers ---------------------------------------
+  joint_R_f_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: joint_R_f
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+  joint_R_M_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: joint_R_m
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+  joint_R_r_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: joint_R_r
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+  joint_L_f_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: joint_L_f
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+  joint_L_m_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: joint_L_m
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+  joint_L_r_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: joint_L_r
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+  camera_joint_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: camera_joint
+    pid: {p: 100.0, i: 0.01, d: 10.0}
